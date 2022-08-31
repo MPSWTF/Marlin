@@ -28,7 +28,8 @@
 // #define V6_330_NO_TITAN_NO_TMC 1
 // #define V6_400_TITAN_TMC 1
 // #define V6_400_NO_TITAN_TMC 1
-// #define V6_500_TITAN_TMC 1
+#define V6_500_TITAN_TMC 1
+
 
 // #define V5_330_TITAN_TMC 1
 // #define V5_330_TITAN_NO_TMC 1
@@ -124,11 +125,12 @@
 #elif V6_500_TITAN_TMC
   #define MOTHERBOARD BOARD_CHITU3D_V6
   #define WITH_TMC 1
-  #define WITH_TITAN 1
+  //#define WITH_TITAN 1
+  #define WITH_BMG 1
   #define X_BED_SIZE 500
   #define Y_BED_SIZE 500
   #define Z_MAX_POS 500
-  #define CUSTOM_MACHINE_NAME "Tronxy X5SA V6 500 Titan TMC"
+  #define CUSTOM_MACHINE_NAME "Tronxy X5SA V6 500 MPS.WTF"
   #define COREXY
 
 #elif V5_330_TITAN_TMC
@@ -1192,7 +1194,7 @@
  *                                      X, Y, Z, E0 [, E1[, E2...]]
  */
 #if WITH_TMC && WITH_BMG
-  #define DEFAULT_AXIS_STEPS_PER_UNIT   { 160, 160, 800, 830 }
+  #define DEFAULT_AXIS_STEPS_PER_UNIT   { 157.48, 157.48, 800, 830 }
 #elif WITH_TMC && WITH_TITAN
   #define DEFAULT_AXIS_STEPS_PER_UNIT   { 160, 160, 800, 764 }
 #elif WITH_TMC && !WITH_TITAN && !WITH_BMG
@@ -1473,7 +1475,8 @@
 #ifdef XY2_MODELS
 #define NOZZLE_TO_PROBE_OFFSET { -50, -10, 0 }
 #else
-#define NOZZLE_TO_PROBE_OFFSET { -35, -0, 0 }
+ //MPS.WTF
+ #define NOZZLE_TO_PROBE_OFFSET { -36, 6, 0 }
 #endif
 
 // Most probes should stay away from the edges of the bed, but
@@ -1632,11 +1635,11 @@
 // @section extruder
 
 // For direct drive extruder v9 set to true, for geared extruder set to false.
-#if defined(WITH_TITAN) || defined(WITH_BMG) || MOTHERBOARD == BOARD_BTT_SKR_V1_4_TURBO
-  #define INVERT_E0_DIR true
-#else
+//#if defined(WITH_TITAN) || defined(WITH_BMG) || MOTHERBOARD == BOARD_BTT_SKR_V1_4_TURBO
+//  #define INVERT_E0_DIR true
+//#else
   #define INVERT_E0_DIR false
-#endif
+//#endif
 #define INVERT_E1_DIR false
 #define INVERT_E2_DIR false
 #define INVERT_E3_DIR false
@@ -2994,7 +2997,7 @@
  *   root of your SD card, together with the compiled firmware.
  */
 //#define TFT_CLASSIC_UI
-//#define TFT_COLOR_UI
+#define TFT_COLOR_UI
 //#define TFT_LVGL_UI
 
 #if ENABLED(TFT_LVGL_UI)
