@@ -17,6 +17,14 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ * 
+ * 
+ * HINWEIS MPS.WTF: Unbedingt .gcode-Datei 2x ausführen mit um EEPROM zurück zu setzen!
+ * M502;
+ * M500;
+ * M503;
+ * 
+ * 
  *
  */
 #pragma once
@@ -1095,9 +1103,10 @@
  * :['A4988', 'A5984', 'DRV8825', 'LV8729', 'L6470', 'L6474', 'POWERSTEP01', 'TB6560', 'TB6600', 'TMC2100', 'TMC2130', 'TMC2130_STANDALONE', 'TMC2160', 'TMC2160_STANDALONE', 'TMC2208', 'TMC2208_STANDALONE', 'TMC2209', 'TMC2209_STANDALONE', 'TMC26X', 'TMC26X_STANDALONE', 'TMC2660', 'TMC2660_STANDALONE', 'TMC5130', 'TMC5130_STANDALONE', 'TMC5160', 'TMC5160_STANDALONE']
  */
 #ifdef WITH_TMC
-  #define X_DRIVER_TYPE TMC2208_STANDALONE
-  #define Y_DRIVER_TYPE TMC2208_STANDALONE
-  #define Z_DRIVER_TYPE TMC2208_STANDALONE
+///MPS.WTF Board hat 2209 - 31-08-2022
+  #define X_DRIVER_TYPE TMC2209_STANDALONE
+  #define Y_DRIVER_TYPE TMC2209_STANDALONE
+  #define Z_DRIVER_TYPE TMC2209_STANDALONE
   //#define X2_DRIVER_TYPE A4988
   //#define Y2_DRIVER_TYPE A4988
   //#define Z2_DRIVER_TYPE A4988
@@ -1193,9 +1202,9 @@
  * Override with M92
  *                                      X, Y, Z, E0 [, E1[, E2...]]
  */
-#if WITH_TMC && WITH_BMG
-  #define DEFAULT_AXIS_STEPS_PER_UNIT   { 157.48, 157.48, 800, 830 }
-#elif WITH_TMC && WITH_TITAN
+//#if WITH_TMC && WITH_BMG
+  #define DEFAULT_AXIS_STEPS_PER_UNIT   { 78.74, 78.74, 764.23, 830 }
+/*#elif WITH_TMC && WITH_TITAN
   #define DEFAULT_AXIS_STEPS_PER_UNIT   { 160, 160, 800, 764 }
 #elif WITH_TMC && !WITH_TITAN && !WITH_BMG
   #define DEFAULT_AXIS_STEPS_PER_UNIT   { 160, 160, 800, 186 }
@@ -1211,7 +1220,7 @@
   #else
     #define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 400, 93 }
   #endif
-#endif
+#endif*/
 
 // #define DEFAULT_AXIS_STEPS_PER_UNIT   { 160, 160, 800, 420 }
 //TITAN EXTRUDER:
@@ -1472,12 +1481,12 @@
  *     |    [-]    |
  *     O-- FRONT --+
  */
-#ifdef XY2_MODELS
-#define NOZZLE_TO_PROBE_OFFSET { -50, -10, 0 }
-#else
+//#ifdef XY2_MODELS
+//#define NOZZLE_TO_PROBE_OFFSET { -50, -10, 0 }
+//#else
  //MPS.WTF
  #define NOZZLE_TO_PROBE_OFFSET { -36, 6, 0 }
-#endif
+//#endif
 
 // Most probes should stay away from the edges of the bed, but
 // with NOZZLE_AS_PROBE this can be negative for a wider probing area.
@@ -2020,8 +2029,8 @@
 
 // Manually set the home position. Leave these undefined for automatic settings.
 // For DELTA this is the top-center of the Cartesian print volume.
-//#define MANUAL_X_HOME_POS 0
-//#define MANUAL_Y_HOME_POS 0
+//#define MANUAL_X_HOME_POS 250
+//#define MANUAL_Y_HOME_POS 250
 //#define MANUAL_Z_HOME_POS 0
 
 // Use "Z Safe Homing" to avoid homing with a Z probe outside the bed area.
@@ -2041,12 +2050,12 @@
 #endif
 
 // Homing speeds (mm/min)
-#if defined(XY2_MODELS)
+//#if defined(XY2_MODELS)
   // Slow down the X/Y homing
-  #define HOMING_FEEDRATE_MM_M { (35*60), (35*60), (4*60) }
-#else
-  #define HOMING_FEEDRATE_MM_M { (40*60), (40*60), (4*60) }
-#endif
+  #define HOMING_FEEDRATE_MM_M { (30*60), (30*60), (4*60) }
+//#else
+ // #define HOMING_FEEDRATE_MM_M { (40*60), (40*60), (4*60) }
+//#endif
 
 // Validate that endstops are triggered on homing moves
 #define VALIDATE_HOMING_ENDSTOPS
@@ -2457,7 +2466,7 @@
 //
 // Add individual axis homing items (Home X, Home Y, and Home Z) to the LCD menu.
 //
-//#define INDIVIDUAL_AXIS_HOMING_MENU
+#define INDIVIDUAL_AXIS_HOMING_MENU
 
 //
 // SPEAKER/BUZZER
