@@ -1203,7 +1203,9 @@
  *                                      X, Y, Z, E0 [, E1[, E2...]]
  */
 //#if WITH_TMC && WITH_BMG
-  #define DEFAULT_AXIS_STEPS_PER_UNIT   { 78.74, 78.74, 764.23, 830 }
+//MPS.WTF BMG CLONE 415!
+//ALT 11.09.2022: { 78.74, 78.74, 382.12, 412.6 }
+  #define DEFAULT_AXIS_STEPS_PER_UNIT   { 80.14, 80.14, 393.9, 412.6 }
 /*#elif WITH_TMC && WITH_TITAN
   #define DEFAULT_AXIS_STEPS_PER_UNIT   { 160, 160, 800, 764 }
 #elif WITH_TMC && !WITH_TITAN && !WITH_BMG
