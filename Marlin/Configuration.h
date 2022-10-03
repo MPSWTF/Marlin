@@ -1206,7 +1206,8 @@
 //MPS.WTF BMG CLONE 415!
 //ALT 11.09.2022: { 78.74, 78.74, 382.12, 412.6 }
 //ALT 03.10.2022 { 80.14, 80.14, 393.9, 412.6 }
-  #define DEFAULT_AXIS_STEPS_PER_UNIT   { 81.154, 81.154, 409.25, 412.6 }
+//ALT 03.10.2022 { 81.154, 81.154, 409.25, 412.6 }
+  #define DEFAULT_AXIS_STEPS_PER_UNIT   { 80.55, 80.55, 398.3, 412.6 }
 /*#elif WITH_TMC && WITH_TITAN
   #define DEFAULT_AXIS_STEPS_PER_UNIT   { 160, 160, 800, 764 }
 #elif WITH_TMC && !WITH_TITAN && !WITH_BMG
@@ -2055,7 +2056,7 @@
 // Homing speeds (mm/min)
 //#if defined(XY2_MODELS)
   // Slow down the X/Y homing
-  #define HOMING_FEEDRATE_MM_M { (30*60), (30*60), (4*60) }
+  #define HOMING_FEEDRATE_MM_M { (50*60), (50*60), (4*60) }
 //#else
  // #define HOMING_FEEDRATE_MM_M { (40*60), (40*60), (4*60) }
 //#endif
@@ -2093,13 +2094,13 @@
  *    +-------------->X     +-------------->X     +-------------->Y
  *     XY_SKEW_FACTOR        XZ_SKEW_FACTOR        YZ_SKEW_FACTOR
  */
-//#define SKEW_CORRECTION
+#define SKEW_CORRECTION
 
 #if ENABLED(SKEW_CORRECTION)
   // Input all length measurements here:
-  #define XY_DIAG_AC 282.8427124746
-  #define XY_DIAG_BD 282.8427124746
-  #define XY_SIDE_AD 200
+  #define XY_DIAG_AC 142.2
+  #define XY_DIAG_BD 142.6
+  #define XY_SIDE_AD 100.6
 
   // Or, set the default skew factors directly here
   // to override the above measurements:
